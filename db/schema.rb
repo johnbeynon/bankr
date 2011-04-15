@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414081721) do
+ActiveRecord::Schema.define(:version => 20110414204521) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(:version => 20110414081721) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "account_id"
+    t.date     "statement_date"
+    t.decimal  "amount"
+    t.string   "vendor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "transaction_type"
+  end
+
+  add_index "transactions", ["transaction_type"], :name => "index_transactions_on_transaction_type"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
