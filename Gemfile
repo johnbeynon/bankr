@@ -5,7 +5,6 @@ gem 'pg'
 gem 'devise'
 gem 'inherited_resources'
 gem 'formtastic'
-gem 'hpricot'
 gem 'ofx'
 
 group :development, :test do

@@ -6,12 +6,16 @@ describe Transaction do
     before { @transaction = Factory.build(:transaction) }
     subject { @transaction } 
     it { should be_valid }
-    xit "shouldn't raise an error when saved" do
+    it "shouldn't raise an error when saved" do
       lambda{@transaction.save!}.should_not raise_error
     end
   end  
   
   it { should belong_to :account}
+  it { should validate_presence_of :account_id}
+  
+  it { should validate_presence_of :amount}
+  it { should validate_presence_of :statement_date}
   
   context "when a new credit transaction is added" do
     
@@ -20,7 +24,7 @@ describe Transaction do
       @transaction.save!
     end
     
-    it "should set the transaction_type" do
+    it "should set the transaction_type as credit" do
       @transaction.transaction_type.should == 'CREDIT'
     end
    
@@ -34,7 +38,7 @@ describe Transaction do
       @transaction.save!
     end
     
-    it "should set the transaction_type" do
+    it "should set the transaction_type as debit" do
       @transaction.transaction_type.should == 'DEBIT'
     end
    

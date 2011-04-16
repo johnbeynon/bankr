@@ -1,5 +1,8 @@
 class Transaction < ActiveRecord::Base
   belongs_to :account
+  validates :account_id, :presence => true, :numericality => true
+  validates :amount, :presence => true, :numericality => true
+  validates :statement_date, :presence => true
   
   before_save :set_transaction_type
   
