@@ -32,6 +32,8 @@ GEM
     arel (2.0.9)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    bullet (2.0.1)
+      uniform_notifier (~> 1.0.0)
     colored (1.2)
     columnize (0.3.2)
     configuration (1.2.0)
@@ -133,6 +135,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.26)
+    uniform_notifier (1.0.1)
     warden (1.0.3)
       rack (>= 1.0.0)
 
@@ -140,6 +143,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bullet
   devise
   factory_girl_rails
   formtastic

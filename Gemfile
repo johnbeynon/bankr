@@ -8,10 +8,11 @@ gem 'formtastic'
 gem 'ofx'
 
 group :development, :test do
- 	gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
-  gem 'launchy'
+	gem 'rspec-rails'
+	gem 'shoulda-matchers'
+	gem 'factory_girl_rails'
+	gem 'launchy'
 	gem 'ruby-debug19'
 	gem 'rails_best_practices'
+	gem 'bullet'
 end
