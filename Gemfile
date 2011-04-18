@@ -13,4 +13,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
 	gem 'ruby-debug19'
+	gem 'rails_best_practices'
 end

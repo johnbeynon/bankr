@@ -12,15 +12,16 @@ describe Transaction do
   end  
   
   it { should belong_to :account}
+  it { should belong_to :category}
   it { should validate_presence_of :account_id}
   
   it { should validate_presence_of :amount}
-  it { should validate_presence_of :statement_date}
+  it { should validate_presence_of :posted_at}
   
   context "when a new credit transaction is added" do
     
     before do
-      @transaction = Factory(:transaction, :amount => 10.0, :vendor => 'Kyan Media', :statement_date => Date.today)
+      @transaction = Factory(:transaction, :amount => 10.0, :name => 'Kyan Media', :posted_at => Date.today)
       @transaction.save!
     end
     
@@ -34,7 +35,7 @@ describe Transaction do
   context "when a new debit transaction is added" do
     
     before do
-      @transaction = Factory(:transaction, :amount => -10.0, :vendor => 'Sainsburys', :statement_date => Date.today)
+      @transaction = Factory(:transaction, :amount => -10.0, :name => 'Sainsburys', :posted_at => Date.today)
       @transaction.save!
     end
     

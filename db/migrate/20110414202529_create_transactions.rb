@@ -2,12 +2,14 @@ class CreateTransactions < ActiveRecord::Migration
   def self.up
     create_table :transactions do |t|
       t.integer :account_id
-      t.date :statement_date
+      t.date :posted_at
       t.decimal :amount
-      t.string :vendor
+      t.string :name
+      t.string :fitid
 
       t.timestamps
     end
+		add_index :transactions, :account_id,					:unique => true
   end
 
   def self.down

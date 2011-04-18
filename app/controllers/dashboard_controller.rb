@@ -1,8 +1,8 @@
 class DashboardController < ApplicationController
-  
-  before_filter :authenticate_user!
-  
-  def index
-  end
+
+	before_filter :authenticate_user!
+
+	def index
+	end
 
 end
