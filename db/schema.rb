@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110416100811) do
+ActiveRecord::Schema.define(:version => 20110418211329) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(:version => 20110416100811) do
   add_index "categories", ["account_id"], :name => "index_categories_on_account_id", :unique => true
   add_index "categories", ["category_type_id"], :name => "index_categories_on_category_type_id", :unique => true
 
+  create_table "category_matchers", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "matcher"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "category_types", :force => true do |t|
     t.integer  "account_id"
     t.string   "name"
@@ -56,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20110416100811) do
     t.integer  "category_id"
   end
 
-  add_index "transactions", ["account_id"], :name => "index_transactions_on_account_id", :unique => true
+  add_index "transactions", ["account_id"], :name => "index_transactions_on_account_id"
   add_index "transactions", ["category_id"], :name => "index_transactions_on_category_id", :unique => true
   add_index "transactions", ["transaction_type"], :name => "index_transactions_on_transaction_type"
 

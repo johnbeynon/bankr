@@ -9,7 +9,7 @@ class CreateTransactions < ActiveRecord::Migration
 
       t.timestamps
     end
-		add_index :transactions, :account_id,					:unique => true
+		add_index :transactions, :account_id
   end
 
   def self.down

@@ -1,9 +1,9 @@
 class Transaction < ActiveRecord::Base
 
 	belongs_to :account
-	has_one :category
+	belongs_to :category
 
-	before_save :set_transaction_type
+	before_save :set_transaction_type, :match_category
 
 	validates :account_id, :presence => true, :numericality => true
 	validates :amount, :presence => true, :numericality => true
@@ -18,6 +18,11 @@ class Transaction < ActiveRecord::Base
 
 	def set_transaction_type
 		self.transaction_type = (amount > 0) ? 'CREDIT' : 'DEBIT'
+	end
+	
+	def match_category
+		matches = CategoryMatcher.where("matcher ILIKE ?", "#{self.name}")
+		self.category_id = matches.first.category_id if matches.present?
 	end
 
 end

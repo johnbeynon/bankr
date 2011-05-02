@@ -21,13 +21,16 @@ describe Transaction do
   context "when a new credit transaction is added" do
     
     before do
-      @transaction = Factory(:transaction, :amount => 10.0, :name => 'Kyan Media', :posted_at => Date.today)
+      @transaction = Factory(:transaction, :amount => 10.0, :name => 'DIRECT LINE INS', :posted_at => Date.today)
       @transaction.save!
     end
     
     it "should set the transaction_type as credit" do
       @transaction.transaction_type.should == 'CREDIT'
     end
+		it "should be matched accordingly" do
+			@transaction.category_id.should === Category.where('name = ?', 'Home Insurance').first.id
+		end
    
    
   end
@@ -43,8 +46,6 @@ describe Transaction do
       @transaction.transaction_type.should == 'DEBIT'
     end
    
-   
   end
-  
 
 end
