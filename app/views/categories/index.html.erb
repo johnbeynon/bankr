@@ -1,0 +1,16 @@
+<h1>Labels</h1>
+
+<%= link_to 'New', new_account_category_path(@account) %>
+
+<table>
+	<tr>
+		<th>Label</th>
+		<th>Amount</th>
+	</tr>
+	<% @categories.each do |category| %>
+		<tr>
+			<td><%= link_to category.name, category_path(category) %></td>
+			<td><%= category.transactions.sum(:amount).to_i %></td>
+		</tr>
+	<% end %>
+</table>

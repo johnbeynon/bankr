@@ -7,7 +7,7 @@ class CreateCategoryTypes < ActiveRecord::Migration
 
       t.timestamps
     end
-		add_index :category_types, :account_id,					:unique => true
+		add_index :category_types, :account_id
   end
 
   def self.down

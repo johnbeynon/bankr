@@ -1,0 +1,10 @@
+<h1><%= @category.name %></h1>
+<h2>Label Matchers</h2>
+
+<%= link_to 'New', new_category_category_matcher_path(@category) %>
+
+<ul>
+<% @category.category_matchers.each do |matcher| %>
+	<li><%= link_to matcher.matcher %></li>
+<% end %>
+</ul>

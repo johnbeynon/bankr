@@ -3,13 +3,16 @@ module Importer
 	def ofx(statement,account_id)
 
 		OFX(statement).account.transactions.each do |transaction|
-			t = Transaction.new
-			t.account_id = account_id
-			t.posted_at = transaction.posted_at
-			t.name = transaction.name
-			t.amount = transaction.amount
-			t.fitid = transaction.fit_id
-			t.save!
+			@transaction = Transaction.find_by_fitid(transaction.fit_id) # Do we have a transaction using this fit_id?
+			unless @transaction
+				t = Transaction.new
+				t.account_id = account_id
+				t.posted_at = transaction.posted_at
+				t.name = transaction.name
+				t.amount = transaction.amount
+				t.fitid = transaction.fit_id
+				t.save!
+			end
 		end
 	end
 

@@ -18,5 +18,7 @@ describe Account do
   it { should validate_numericality_of(:balance) }
   
   it { should belong_to :user}
+	it { should have_many :transactions}
+	it { should have_many :categories}
 
 end

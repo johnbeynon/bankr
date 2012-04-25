@@ -12,7 +12,7 @@ describe Category do
   end  
   
   it { should validate_presence_of :name }
-	it { should belong_to :category_type }
+	#it { should belong_to :category_type }
 	it { should have_many :category_matchers }
 	
 

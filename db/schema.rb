@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20110418211329) do
     t.datetime "updated_at"
   end
 
-  add_index "category_types", ["account_id"], :name => "index_category_types_on_account_id", :unique => true
+  add_index "category_types", ["account_id"], :name => "index_category_types_on_account_id"
 
   create_table "transactions", :force => true do |t|
     t.integer  "account_id"

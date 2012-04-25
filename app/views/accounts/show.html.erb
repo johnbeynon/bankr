@@ -1,0 +1,37 @@
+<h1><%= @account.name %></h1>
+
+<%= link_to 'Categories', account_categories_path(@account) %> 
+<%= link_to 'Transactions', account_transactions_path(@account) %>
+<%= link_to 'Import', new_account_transaction_path(@account) %>
+
+<h2>Summary</h2>
+<table>
+	<tr>
+		<td><%= link_to 'Credits', account_transactions_path(@account, :type => 'credits') %></td>
+		<td><%= number_to_currency @transactions.credits.sum(:amount) %></td>
+	</tr>
+	<tr>
+		<td><%= link_to 'Debits', account_transactions_path(@account, :type => 'debits') %></td>
+		<td><%= number_to_currency @transactions.debits.sum(:amount) %></td>
+	</tr>
+</table>
+
+<h2>Spending Breakdown</h2>
+<table>
+	<thead>
+		<th>Category</th>
+		<th>Amount</th>
+		<th>Month Previous</th>
+	</thead>
+<% @transactions.debits.group_by(&:category).each do |category, transactions| %>
+	<tr>
+		<td><%= category ? category.name : 'Uncategorised' %></td>
+		<td><%= number_to_currency transactions.sum(&:amount) %></td>
+		<td><%= category.transactions.for_month(2).sum(:amount) if category %></td>
+	</tr>
+<% end %>
+<tr>
+	<td></td>
+	<td><%= number_to_currency @transactions.debits.sum(:amount) %></td>
+</tr>
+ </table>

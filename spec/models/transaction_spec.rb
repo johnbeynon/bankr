@@ -29,8 +29,11 @@ describe Transaction do
       @transaction.transaction_type.should == 'CREDIT'
     end
 		it "should be matched accordingly" do
-			@transaction.category_id.should === Category.where('name = ?', 'Home Insurance').first.id
+			@transaction.category_id.should === Category.where('name = ?', 'Insurances').first.id
 		end
+     xit "should not create a new category matcher" do        
+       expect { @transaction.save! }.to not_change(CategoryMatcher, :count).by(1)  
+     end
    
    
   end
@@ -47,5 +50,22 @@ describe Transaction do
     end
    
   end
+  
+  context "when an existing transaction is updated with a category" do
+    
+     before do
+        @category = Factory(:category)
+        @transaction = Factory(:transaction, :amount => -10.0, :name => 'Asda', :posted_at => Date.today)
+        @transaction.category = @category
+      end
+
+      it "should create a new category matcher" do        
+        expect { @transaction.save! }.to change(CategoryMatcher, :count).by(1)  
+      end
+    
+  end
+  
+
+  
 
 end

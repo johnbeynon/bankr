@@ -3,6 +3,15 @@ Bankr::Application.routes.draw do
 
   devise_for :users
 
+	resources :accounts do
+		resources :categories
+		resources :transactions
+	end
+	
+	resources :categories	do
+		resources :category_matchers
+	end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

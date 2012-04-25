@@ -1,0 +1,24 @@
+<h1><%= link_to @account.name, account_path(@account) %></h1>
+
+<%= link_to 'Categories', account_categories_path(@account) %> 
+<%= link_to 'Transactions', account_transactions_path(@account) %>
+<%= link_to 'Import', new_account_transaction_path(@account) %>
+
+<table>
+	<tr>
+		<td>Date</td>
+		<td></td>
+		<td>Category</td>
+		<td>Amount</td>
+		<td></td>
+	</td>
+<% @transactions.each do |transaction| %>
+	<tr>
+		<td><%= transaction.posted_at%></td>
+		<td><%= transaction.name %></td>
+		<td><%= transaction.category.name if transaction.category %>
+		<td><%= transaction.amount %></td>
+		<td><%= link_to 'edit', edit_account_transaction_path(@account, transaction) %></td>
+	</tr>
+<% end %>
+</table>

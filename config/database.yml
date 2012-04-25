@@ -9,6 +9,8 @@ development:
   database: bankr_development
   <<: *default
 
-test:
+test: &test
   database: bankr_test
   <<: *default
+cucumber:
+  <<: *test
