@@ -12,15 +12,7 @@ guard 'livereload' do
   watch(%r{config/locales/.+\.yml})
 end
 
-guard 'spork' do
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch(%r{^config/environments/.*\.rb$})
-  watch(%r{^config/initializers/.*\.rb$})
-  watch('spec/spec_helper.rb')
-end
-
-guard 'rspec', :cli => "--drb" do
+guard 'rspec' do
 	watch('spec/spec_helper.rb')                       { "spec" }
   watch('config/routes.rb')                          { "spec/routing" }
   watch('app/controllers/application_controller.rb') { "spec/controllers" }

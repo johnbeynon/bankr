@@ -21,7 +21,6 @@ group :development, :test do
 	gem 'bullet'
 	gem 'rails-footnotes', '>= 3.7'
 	
-	gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
 	gem 'guard'
 	gem 'guard-rspec'
 	gem 'guard-livereload'
